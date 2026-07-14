@@ -9,6 +9,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-E50914?style=for-the-badge&logo=framer)](https://www.framer.com/motion)
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel)](https://vercel.com)
+[![GitHub](https://img.shields.io/badge/GitHub-Source-181717?style=for-the-badge&logo=github)](https://github.com/Asadalvi979/portfolio)
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-blue?style=for-the-badge)](https://asadullahsadiq.vercel.app)
 
@@ -102,7 +103,7 @@ This entire project was built using **vibe coding** — a development approach w
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/portfolio.git
+git clone https://github.com/Asadalvi979/portfolio.git
 
 # Navigate to project directory
 cd portfolio
