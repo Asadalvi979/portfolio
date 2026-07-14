@@ -1,0 +1,68 @@
+{
+  "frontend": [
+    {
+      "name": "HTML",
+      "icon": "html"
+    },
+    {
+      "name": "CSS",
+      "icon": "css"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "javascript"
+    },
+    {
+      "name": "Bootstrap",
+      "icon": "bootstrap"
+    }
+  ],
+  "backend": [
+    {
+      "name": "Django",
+      "icon": "django"
+    },
+    {
+      "name": "PHP",
+      "icon": "php"
+    }
+  ],
+  "database": [
+    {
+      "name": "MySQL",
+      "icon": "mysql"
+    },
+    {
+      "name": "SQL Lite",
+      "icon": "mysql"
+    }
+  ],
+  "programming": [
+    {
+      "name": "C++",
+      "icon": "cpp"
+    },
+    {
+      "name": "COAL",
+      "icon": "coal"
+    },
+    {
+      "name": "Python",
+      "icon": "python"
+    }
+  ],
+  "tools": [
+    {
+      "name": "GitHub",
+      "icon": "github"
+    },
+    {
+      "name": "Claude",
+      "icon": "claude"
+    },
+    {
+      "name": "OpenCode",
+      "icon": "html"
+    }
+  ]
+}

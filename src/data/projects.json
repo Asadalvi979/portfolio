@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "title": "CampNect",
+    "category": "fullstack",
+    "description": "CampNect is a comprehensive platform connecting university students, seniors, and alumni through mentorship, networking, collaboration, and academic support.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "Django",
+      "sqlLite"
+    ],
+    "github": "https://github.com/Asadalvi979/CampNect",
+    "live": "https://campnect-production.up.railway.app/",
+    "image": null,
+    "screenshots": [],
+    "subProjects": []
+  },
+  {
+    "id": 2,
+    "title": "FoodLynk",
+    "category": "fullstack",
+    "description": "A professional food ordering platform that connects users with local restaurants. Features include menu browsing, cart management, order tracking, and secure payments.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "PHP",
+      "MySQL"
+    ],
+    "github": "https://github.com/Asadalvi979",
+    "live": "#",
+    "image": null,
+    "screenshots": [],
+    "subProjects": []
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Full Stack Development",
+    "description": "End-to-end web application development using modern technologies and best practices.",
+    "icon": "code"
+  },
+  {
+    "title": "Frontend Development",
+    "description": "Responsive, accessible, and performant user interfaces with modern frameworks.",
+    "icon": "layout"
+  },
+  {
+    "title": "Backend Development",
+    "description": "Scalable server-side solutions, RESTful APIs, and database architecture.",
+    "icon": "server"
+  },
+  {
+    "title": "Portfolio Website Development",
+    "description": "Premium, custom portfolio websites that showcase your work and attract opportunities.",
+    "icon": "globe"
+  },
+  {
+    "title": "Deployment & Hosting",
+    "description": "CI/CD pipeline setup, cloud deployment, and server management for web applications.",
+    "icon": "cloud"
+  },
+  {
+    "title": "Management Systems",
+    "description": "Web-based management systems tailored to automate tasks, manage records, and improve organizational performance.",
+    "icon": "layout"
+  }
+]
