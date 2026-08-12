@@ -26,7 +26,7 @@ export default function LoginPage() {
     setLoading(true);
 
     setTimeout(() => {
-      if (email === "asadalvi979@gmail.com" && password === "!Sahiwal7890") {
+      if (email === "asadullahsadiqalvi@gmail.com" && password === "!Sahiwal7890") {
         localStorage.setItem("dashboard_auth", "true");
         router.push("/dashboard");
       } else {

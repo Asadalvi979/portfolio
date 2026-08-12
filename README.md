@@ -226,6 +226,6 @@ Copyright &copy; 2025 Asadullah Sadiq. All rights reserved.
 
 [![GitHub](https://img.shields.io/badge/GitHub-asadullahsadiq-181717?style=flat&logo=github)](https://github.com/asadullahsadiq)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Asadullah_Sadiq-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/asadullahsadiq)
-[![Email](https://img.shields.io/badge/Email-asadalvi979@gmail.com-EA4335?style=flat&logo=gmail)](mailto:asadalvi979@gmail.com)
+[![Email](https://img.shields.io/badge/Email-asadullahsadiqalvi@gmail.com-EA4335?style=flat&logo=gmail)](mailto:asadullahsadiqalvi@gmail.com)
 
 </div>

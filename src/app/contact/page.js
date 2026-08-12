@@ -10,8 +10,8 @@ const contactInfo = [
   {
     icon: FiMail,
     label: "Email",
-    value: "asadalvi979@gmail.com",
-    href: "mailto:asadalvi979@gmail.com",
+    value: "asadullahsadiqalvi@gmail.com",
+    href: "mailto:asadullahsadiqalvi@gmail.com",
   },
   {
     icon: FiPhone,

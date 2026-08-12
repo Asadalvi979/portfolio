@@ -33,7 +33,7 @@ const socialIcons = {
 export default function Footer() {
   const year = new Date().getFullYear();
   const [socials, setSocials] = useState([]);
-  const [profile, setProfile] = useState({ email: "asadalvi979@gmail.com", location: "Sahiwal, Punjab, Pakistan" });
+  const [profile, setProfile] = useState({ email: "asadullahsadiqalvi@gmail.com", location: "Sahiwal, Punjab, Pakistan" });
 
   useEffect(() => {
     fetch("/api/socials").then((r) => r.json()).then(setSocials).catch(() => {});
