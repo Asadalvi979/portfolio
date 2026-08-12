@@ -53,7 +53,6 @@ export default function ContactForm() {
             required
             value={formData.name}
             onChange={handleChange}
-            placeholder="John Doe"
             className="w-full px-4 py-3 rounded-xl bg-white dark:bg-dark-100 border border-light-200 dark:border-dark-200/50 text-text-dark dark:text-text placeholder-light-400/50 dark:placeholder-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all"
           />
         </div>
@@ -68,7 +67,6 @@ export default function ContactForm() {
             required
             value={formData.email}
             onChange={handleChange}
-            placeholder="john@example.com"
             className="w-full px-4 py-3 rounded-xl bg-white dark:bg-dark-100 border border-light-200 dark:border-dark-200/50 text-text-dark dark:text-text placeholder-light-400/50 dark:placeholder-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all"
           />
         </div>
@@ -85,7 +83,6 @@ export default function ContactForm() {
           required
           value={formData.subject}
           onChange={handleChange}
-          placeholder="What's this about?"
           className="w-full px-4 py-3 rounded-xl bg-white dark:bg-dark-100 border border-light-200 dark:border-dark-200/50 text-text-dark dark:text-text placeholder-light-400/50 dark:placeholder-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all"
         />
       </div>
@@ -101,7 +98,6 @@ export default function ContactForm() {
           rows={6}
           value={formData.message}
           onChange={handleChange}
-          placeholder="Your message..."
             className="w-full px-4 py-3 rounded-xl bg-white dark:bg-dark-100 border border-light-200 dark:border-dark-200/50 text-text-dark dark:text-text placeholder-light-400/50 dark:placeholder-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all resize-none"
         />
       </div>
