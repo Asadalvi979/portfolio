@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,7 +14,7 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body), sans-serif;
     @apply bg-light-50 text-text-dark dark:bg-dark dark:text-text;
     overflow-x: hidden;
   }
@@ -105,6 +103,33 @@
   .mask-fade-bottom {
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  .floating-icon {
+    animation: floatIcon 8s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes floatIcon {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(10px, -15px) rotate(5deg);
+    }
+    50% {
+      transform: translate(-10px, 10px) rotate(-5deg);
+    }
+    75% {
+      transform: translate(5px, 15px) rotate(3deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-icon {
+      animation: none;
+    }
   }
 }
 

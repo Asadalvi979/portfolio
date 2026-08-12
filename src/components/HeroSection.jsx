@@ -26,6 +26,10 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         headingRef.current?.children || [],
@@ -209,6 +213,7 @@ export default function HeroSection() {
                     <img
                       src={profile.profileImage}
                       alt={profile.name}
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   ) : (

@@ -49,9 +49,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ["Poppins", "sans-serif"],
-        body: ["Inter", "sans-serif"],
-        code: ["JetBrains Mono", "monospace"],
+        heading: ["var(--font-heading)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        code: ["var(--font-code)", "monospace"],
       },
       animation: {
         "fade-up": "fadeUp 0.6s ease-out forwards",

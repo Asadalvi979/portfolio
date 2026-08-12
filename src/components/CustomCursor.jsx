@@ -12,26 +12,37 @@ export default function CustomCursor() {
     const follower = followerRef.current;
     if (!cursor || !follower) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     let mouseX = 0;
     let mouseY = 0;
     let followerX = 0;
     let followerY = 0;
+    let rafId;
+    let lastX = 0;
+    let lastY = 0;
 
     const onMouseMove = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      if (Math.abs(mouseX - lastX) > 1 || Math.abs(mouseY - lastY) > 1) {
+        lastX = mouseX;
+        lastY = mouseY;
+        cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      }
     };
 
     const animate = () => {
       followerX += (mouseX - followerX) * 0.1;
       followerY += (mouseY - followerY) * 0.1;
       follower.style.transform = `translate(${followerX}px, ${followerY}px)`;
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
 
     document.addEventListener("mousemove", onMouseMove);
-    animate();
+    rafId = requestAnimationFrame(animate);
 
     const handleMouseEnter = () => {
       cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1.5)`;
@@ -56,6 +67,7 @@ export default function CustomCursor() {
 
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
+      cancelAnimationFrame(rafId);
       interactiveElements.forEach((el) => {
         el.removeEventListener("mouseenter", handleMouseEnter);
         el.removeEventListener("mouseleave", handleMouseLeave);
@@ -70,6 +82,7 @@ export default function CustomCursor() {
         className="fixed top-0 left-0 w-4 h-4 bg-accent rounded-full pointer-events-none z-[9999] mix-blend-difference hidden lg:block"
         style={{
           transform: "translate(-50%, -50%)",
+          willChange: "transform",
           transition: "transform 0.1s ease, border-color 0.3s ease, background-color 0.3s ease",
           border: "2px solid #3B82F6",
         }}
@@ -79,6 +92,7 @@ export default function CustomCursor() {
         className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9998] border border-accent/30 hidden lg:block"
         style={{
           transform: "translate(-50%, -50%)",
+          willChange: "transform",
           transition: "border-color 0.3s ease",
         }}
       />

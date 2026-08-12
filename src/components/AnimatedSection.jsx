@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -12,6 +12,7 @@ export default function AnimatedSection({
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const prefersReducedMotion = useReducedMotion();
 
   const directionVariants = {
     up: { y: 60 },
@@ -20,18 +21,22 @@ export default function AnimatedSection({
     right: { x: -60 },
   };
 
+  const initial = {
+    opacity: prefersReducedMotion ? 1 : 0,
+    ...(prefersReducedMotion ? {} : directionVariants[direction]),
+  };
+
+  const animate = {
+    opacity: prefersReducedMotion ? 1 : isInView ? 1 : 0,
+    x: prefersReducedMotion ? 0 : isInView ? 0 : directionVariants[direction].x || 0,
+    y: prefersReducedMotion ? 0 : isInView ? 0 : directionVariants[direction].y || 0,
+  };
+
   return (
     <motion.div
       ref={ref}
-      initial={{
-        opacity: 0,
-        ...directionVariants[direction],
-      }}
-      animate={{
-        opacity: isInView ? 1 : 0,
-        x: isInView ? 0 : directionVariants[direction].x || 0,
-        y: isInView ? 0 : directionVariants[direction].y || 0,
-      }}
+      initial={initial}
+      animate={animate}
       transition={{
         duration: 0.8,
         delay,
