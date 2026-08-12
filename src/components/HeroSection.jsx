@@ -12,9 +12,17 @@ export default function HeroSection() {
   const subheadingRef = useRef(null);
   const ctaRef = useRef(null);
   const [projectCount, setProjectCount] = useState(0);
+  const [profile, setProfile] = useState({ profileImage: "", cv: "", name: "Asadullah Sadiq" });
 
   useEffect(() => {
     fetch("/api/projects").then((r) => r.json()).then((p) => setProjectCount(p.length)).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/profile")
+      .then((r) => r.json())
+      .then(setProfile)
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -72,7 +80,7 @@ export default function HeroSection() {
 
             <div ref={headingRef}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-tight">
-                <span className="text-text-dark dark:text-text">Hi, I'm </span>
+                <span className="text-text-dark dark:text-text">Hi, I&apos;m </span>
                 <span className="text-gradient">Asadullah Sadiq</span>
               </h1>
               <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-heading mt-2">
@@ -111,13 +119,26 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Link
-                  href="/resume"
-                  className="group inline-flex items-center gap-2 px-6 py-3.5 border border-light-300 dark:border-dark-300/50 text-text-dark dark:text-text rounded-xl font-semibold text-sm hover:bg-light-200 dark:hover:bg-dark-200 transition-all duration-300 hover:-translate-y-0.5"
-                >
-                  <FiDownload className="w-4 h-4" />
-                  Download Resume
-                </Link>
+                {profile.cv ? (
+                  <a
+                    href={profile.cv}
+                    download={profile.cv.startsWith("data:") ? "Asadullah-CV.pdf" : undefined}
+                    target={profile.cv.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 px-6 py-3.5 border border-light-300 dark:border-dark-300/50 text-text-dark dark:text-text rounded-xl font-semibold text-sm hover:bg-light-200 dark:hover:bg-dark-200 transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <FiDownload className="w-4 h-4" />
+                    Download Resume
+                  </a>
+                ) : (
+                  <Link
+                    href="/resume"
+                    className="group inline-flex items-center gap-2 px-6 py-3.5 border border-light-300 dark:border-dark-300/50 text-text-dark dark:text-text rounded-xl font-semibold text-sm hover:bg-light-200 dark:hover:bg-dark-200 transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <FiDownload className="w-4 h-4" />
+                    Download Resume
+                  </Link>
+                )}
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
@@ -160,32 +181,60 @@ export default function HeroSection() {
 
           <div className="hidden lg:flex items-center justify-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.8, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
               className="relative"
             >
-              <div className="w-80 h-80 xl:w-96 xl:h-96 rounded-2xl bg-gradient-to-br from-accent/20 via-accent/10 to-transparent p-1">
-                <div className="w-full h-full rounded-2xl bg-white dark:bg-dark-100 flex items-center justify-center overflow-hidden">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-5xl mb-4 shadow-2xl shadow-accent/30">
-                      AS
-                    </div>
-                    <p className="text-light-400 dark:text-muted text-sm">Asadullah Sadiq</p>
-                  </div>
-                </div>
-              </div>
+              {/* soft animated glow */}
               <motion.div
-                className="absolute -top-4 -right-4 w-24 h-24 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-3xl"
-                animate={{ rotate: [0, 5, -5, 0], y: [0, -5, 5, 0] }}
+                className="absolute -inset-8 rounded-[3rem] bg-gradient-to-tr from-accent via-accent-light to-purple-500 opacity-30 blur-3xl"
+                animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.45, 0.25] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* floating main card */}
+              <motion.div
+                animate={{ y: [0, -14, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="relative w-96 h-96 xl:w-[26rem] xl:h-[26rem] rounded-[2.5rem] p-1.5 bg-gradient-to-br from-accent via-accent-light to-purple-500 shadow-2xl shadow-accent/30"
+              >
+                <motion.div
+                  className="w-full h-full rounded-[calc(2.5rem-6px)] bg-white dark:bg-dark-100 relative overflow-hidden"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                >
+                  {profile.profileImage ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={profile.profileImage}
+                      alt={profile.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-br from-accent to-accent-dark" />
+                      <div className="absolute inset-0 bg-grid opacity-20" />
+                      <span className="relative flex items-center justify-center h-full text-7xl font-bold font-heading text-white drop-shadow-lg">
+                        AS
+                      </span>
+                    </>
+                  )}
+                </motion.div>
+              </motion.div>
+
+              {/* floating badges */}
+              <motion.div
+                className="absolute -top-5 -right-5 w-24 h-24 rounded-3xl bg-accent/10 border border-accent/20 backdrop-blur flex items-center justify-center text-3xl shadow-lg shadow-accent/10"
+                animate={{ rotate: [0, 10, -10, 0], y: [0, -10, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               >
                 ⚡
               </motion.div>
               <motion.div
-                className="absolute -bottom-6 -left-6 w-20 h-20 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-2xl"
-                animate={{ rotate: [0, -5, 5, 0], y: [0, 5, -5, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-6 -left-6 w-20 h-20 rounded-3xl bg-accent/10 border border-accent/20 backdrop-blur flex items-center justify-center text-2xl shadow-lg shadow-accent/10"
+                animate={{ rotate: [0, -10, 10, 0], y: [0, 10, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
                 💻
               </motion.div>

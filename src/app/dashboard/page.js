@@ -8,7 +8,7 @@ export default function DashboardHome() {
 
   useEffect(() => {
     async function fetchStats() {
-      const [projects, categories, skills, experience, education, certifications, services] =
+      const [projects, categories, skills, experience, education, certifications, services, socials] =
         await Promise.all([
           fetch("/api/projects").then((r) => r.json()),
           fetch("/api/categories").then((r) => r.json()),
@@ -17,6 +17,7 @@ export default function DashboardHome() {
           fetch("/api/education").then((r) => r.json()),
           fetch("/api/certifications").then((r) => r.json()),
           fetch("/api/services").then((r) => r.json()),
+          fetch("/api/socials").then((r) => r.json()),
         ]);
       setStats({
         projects: projects.length,
@@ -26,6 +27,7 @@ export default function DashboardHome() {
         education: education.length,
         certifications: certifications.length,
         services: services.length,
+        socials: socials.length,
       });
     }
     fetchStats();
@@ -40,6 +42,7 @@ export default function DashboardHome() {
         { label: "Education", value: stats.education, color: "from-pink-500 to-pink-600", href: "/dashboard/education" },
         { label: "Certifications", value: stats.certifications, color: "from-yellow-500 to-yellow-600", href: "/dashboard/certifications" },
         { label: "Services", value: stats.services, color: "from-cyan-500 to-cyan-600", href: "/dashboard/services" },
+        { label: "Social Links", value: stats.socials, color: "from-rose-500 to-rose-600", href: "/dashboard/socials" },
       ]
     : [];
 
@@ -78,7 +81,13 @@ export default function DashboardHome() {
       <div className="mt-8 p-6 rounded-2xl bg-dark-100 border border-dark-200">
         <h2 className="text-lg font-bold font-heading text-white mb-4">Quick Actions</h2>
         <div className="flex flex-wrap gap-3">
-          <Link href="/dashboard/projects" className="px-4 py-2 rounded-xl bg-accent text-white text-sm font-medium hover:bg-accent-dark transition-colors">
+          <Link href="/dashboard/profile" className="px-4 py-2 rounded-xl bg-accent text-white text-sm font-medium hover:bg-accent-dark transition-colors">
+            Edit Profile
+          </Link>
+          <Link href="/dashboard/socials" className="px-4 py-2 rounded-xl bg-dark-200 text-white text-sm font-medium hover:bg-dark-300 transition-colors border border-dark-300">
+            Manage Social Links
+          </Link>
+          <Link href="/dashboard/projects" className="px-4 py-2 rounded-xl bg-dark-200 text-white text-sm font-medium hover:bg-dark-300 transition-colors border border-dark-300">
             Add New Project
           </Link>
           <Link href="/dashboard/skills" className="px-4 py-2 rounded-xl bg-dark-200 text-white text-sm font-medium hover:bg-dark-300 transition-colors border border-dark-300">

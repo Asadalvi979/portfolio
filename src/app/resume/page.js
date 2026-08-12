@@ -25,6 +25,7 @@ export default function Resume() {
   const [educationData, setEducationData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
   const [certificationData, setCertificationData] = useState([]);
+  const [cv, setCv] = useState("");
 
   useEffect(() => {
     Promise.all([
@@ -38,6 +39,10 @@ export default function Resume() {
       setExperienceData(exp);
       setCertificationData(certs);
     });
+    fetch("/api/profile")
+      .then((r) => r.json())
+      .then((p) => setCv(p.cv || ""))
+      .catch(() => {});
   }, []);
 
   return (
@@ -52,10 +57,23 @@ export default function Resume() {
               <p className="mt-4 text-lg text-light-400 dark:text-muted">
                 My professional background, skills, and qualifications
               </p>
-              <div className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-dark-100 border border-dark-200 text-muted rounded-xl text-sm cursor-not-allowed">
-                <FiDownload className="w-4 h-4" />
-                Resume PDF coming soon
-              </div>
+              {cv ? (
+                <a
+                  href={cv}
+                  download={cv.startsWith("data:") ? "Asadullah-CV.pdf" : undefined}
+                  target={cv.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-xl text-sm font-medium hover:bg-accent-dark transition-colors"
+                >
+                  <FiDownload className="w-4 h-4" />
+                  Download Resume PDF
+                </a>
+              ) : (
+                <div className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-dark-100 border border-dark-200 text-muted rounded-xl text-sm cursor-not-allowed">
+                  <FiDownload className="w-4 h-4" />
+                  Resume PDF coming soon
+                </div>
+              )}
             </div>
           </AnimatedSection>
 

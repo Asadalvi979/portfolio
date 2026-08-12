@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { href: "/dashboard", label: "Dashboard", icon: "grid" },
+  { href: "/dashboard/profile", label: "Profile", icon: "user" },
+  { href: "/dashboard/socials", label: "Social Links", icon: "link" },
   { href: "/dashboard/projects", label: "Projects", icon: "folder" },
   { href: "/dashboard/categories", label: "Categories", icon: "tag" },
   { href: "/dashboard/skills", label: "Skills", icon: "star" },
@@ -21,6 +23,16 @@ const iconMap = {
   grid: (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+    </svg>
+  ),
+  user: (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    </svg>
+  ),
+  link: (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 010 5.656l-4 4a4 4 0 01-5.656-5.656l1.5-1.5m4.828-4.828l1.5-1.5a4 4 0 015.656 5.656l-3 3M7.757 16.243l4.243-4.243" />
     </svg>
   ),
   folder: (
