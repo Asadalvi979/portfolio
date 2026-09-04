@@ -11,11 +11,18 @@ export default function DashboardLayout({ children }) {
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && localStorage.getItem("dashboard_auth") === "true") {
-      setAuthorized(true);
-    } else {
-      router.replace("/login");
-    }
+    // Middleware already guards this route via the session cookie;
+    // this check only synchronizes client-side UI state.
+    fetch("/api/auth/session")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.authenticated) {
+          setAuthorized(true);
+        } else {
+          router.replace("/login");
+        }
+      })
+      .catch(() => router.replace("/login"));
   }, [router]);
 
   if (!authorized) return (

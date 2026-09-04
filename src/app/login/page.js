@@ -13,27 +13,42 @@ export default function LoginPage() {
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && localStorage.getItem("dashboard_auth") === "true") {
-      router.replace("/dashboard");
-    } else {
-      setChecking(false);
-    }
+    fetch("/api/auth/session")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.authenticated) {
+          router.replace("/dashboard");
+        } else {
+          setChecking(false);
+        }
+      })
+      .catch(() => setChecking(false));
   }, [router]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    setTimeout(() => {
-      if (email === "asadullahsadiqalvi@gmail.com" && password === "!Sahiwal7890") {
-        localStorage.setItem("dashboard_auth", "true");
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
         router.push("/dashboard");
+        router.refresh();
       } else {
-        setError("Invalid email or password");
+        setError(data.error || "Invalid email or password");
         setLoading(false);
       }
-    }, 500);
+    } catch {
+      setError("Something went wrong. Try again.");
+      setLoading(false);
+    }
   }
 
   if (checking) return null;

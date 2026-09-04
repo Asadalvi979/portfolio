@@ -4,4 +4,4 @@ Disallow: /dashboard
 Disallow: /login
 Disallow: /api/
 
-Sitemap: https://asadullahsadiq.vercel.app/sitemap.xml
+Sitemap: https://www.asadullahsadiq.me/sitemap.xml
