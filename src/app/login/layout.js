@@ -1,8 +1,8 @@
 export const metadata = {
-  title: "Dashboard",
+  title: "Login",
   robots: { index: false, follow: false },
 };
 
-export default function DashboardLayout({ children }) {
+export default function LoginLayout({ children }) {
   return children;
 }
