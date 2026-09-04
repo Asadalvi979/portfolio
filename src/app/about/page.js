@@ -1,6 +1,8 @@
 import { readData } from "@/lib/apiHelper";
 import AboutClient from "./AboutClient";
 
+export const dynamic = "force-dynamic";
+
 export default async function About() {
   const [skills, education, projects, certifications] = await Promise.all([
     readData("skills.json"),

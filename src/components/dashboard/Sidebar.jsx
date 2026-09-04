@@ -10,6 +10,7 @@ const links = [
   { href: "/dashboard/profile", label: "Profile", icon: "user" },
   { href: "/dashboard/socials", label: "Social Links", icon: "link" },
   { href: "/dashboard/projects", label: "Projects", icon: "folder" },
+  { href: "/dashboard/posts", label: "Blog Posts", icon: "book" },
   { href: "/dashboard/categories", label: "Categories", icon: "tag" },
   { href: "/dashboard/skills", label: "Skills", icon: "star" },
   { href: "/dashboard/techstack", label: "Tech Stack", icon: "layers" },

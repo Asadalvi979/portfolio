@@ -45,6 +45,7 @@ export const metadata = {
   alternates: {
     canonical: "/",
   },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: "Asadullah Sadiq | Software Engineer & Full Stack Developer",
     description:

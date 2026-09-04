@@ -124,6 +124,9 @@ export default function ProfilePage() {
                   <img
                     src={profile.profileImage}
                     alt="Profile preview"
+                    width={128}
+                    height={128}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 ) : (

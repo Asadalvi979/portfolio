@@ -7,5 +7,27 @@ export default async function ProjectDetail({ params }) {
     ? projects.find((p) => p.id === Number(params.id))
     : null;
 
-  return <ProjectDetailClient project={project} />;
+  const breadcrumbSchema = project
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.asadullahsadiq.me" },
+          { "@type": "ListItem", position: 2, name: "Projects", item: "https://www.asadullahsadiq.me/projects" },
+          { "@type": "ListItem", position: 3, name: project.title, item: `https://www.asadullahsadiq.me/projects/${project.id}` },
+        ],
+      }
+    : null;
+
+  return (
+    <>
+      {breadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      )}
+      <ProjectDetailClient project={project} />
+    </>
+  );
 }

@@ -1,6 +1,10 @@
 import { readData } from "@/lib/apiHelper";
 import HomeClient from "./HomeClient";
 
+// Content comes from Redis and is editable via the dashboard, so this page
+// must render per-request instead of being frozen at build time.
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const [techStackData, services, projectsData, profile, skills, certifications] =
     await Promise.all([

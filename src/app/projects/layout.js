@@ -8,6 +8,7 @@ export const metadata = {
     description:
       "Full-stack web applications, from university platforms to e-commerce systems.",
     url: "/projects",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Projects by Asadullah Sadiq" }],
   },
 };
 

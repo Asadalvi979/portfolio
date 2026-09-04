@@ -197,11 +197,13 @@ export default function HeroSection({ projectCount: initialCount = 0, profile: i
                   whileHover={{ scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 >
-                  {profile.profileImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                      {profile.profileImage ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
                       src={profile.profileImage}
                       alt={profile.name}
+                      width={416}
+                      height={416}
                       decoding="async"
                       className="w-full h-full object-cover"
                     />

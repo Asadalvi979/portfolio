@@ -1,6 +1,8 @@
 import { readData } from "@/lib/apiHelper";
 import ResumeClient from "./ResumeClient";
 
+export const dynamic = "force-dynamic";
+
 export default async function Resume() {
   const [skills, education, experience, certifications, profile] = await Promise.all([
     readData("skills.json"),
