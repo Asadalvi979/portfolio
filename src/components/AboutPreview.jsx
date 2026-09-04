@@ -1,30 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 import Counter from "./Counter";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
 
-export default function AboutPreview() {
-  const [counts, setCounts] = useState({ projects: 10, skills: 10, experience: 1, certifications: 1 });
-
-  useEffect(() => {
-    Promise.all([
-      fetch("/api/projects").then((r) => r.json()),
-      fetch("/api/skills").then((r) => r.json()),
-      fetch("/api/experience").then((r) => r.json()),
-      fetch("/api/certifications").then((r) => r.json()),
-    ]).then(([projects, skills, exp, certs]) => {
-      setCounts({
-        projects: projects.length,
-        skills: skills.length,
-        experience: exp.length,
-        certifications: certs.length,
-      });
-    }).catch(() => {});
-  }, []);
+export default function AboutPreview({ counts }) {
+  const { projects = 0, skills = 0, certifications = 0 } = counts || {};
   return (
     <section className="section-padding">
       <div className="section-container">

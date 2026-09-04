@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink, FiArrowRight } from "react-icons/fi";
 import AnimatedSection from "./AnimatedSection";
@@ -20,14 +19,9 @@ const categoryEmojis = {
   default: "📦",
 };
 
-export default function FeaturedProjects() {
-  const [projectsData, setProjectsData] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/projects").then((r) => r.json()).then(setProjectsData);
-  }, []);
-
-  if (projectsData.length === 0) return null;
+export default function FeaturedProjects({ data }) {
+  const projectsData = data;
+  if (!projectsData || projectsData.length === 0) return null;
 
   const featuredProjects = projectsData.slice(0, 3);
 

@@ -1,70 +1,30 @@
-"use client";
+import { readData } from "@/lib/apiHelper";
+import HomeClient from "./HomeClient";
 
-import { useEffect } from "react";
-import dynamic from "next/dynamic";
-import Lenis from "@studio-freight/lenis";
-import HeroSection from "@/components/HeroSection";
+export default async function Home() {
+  const [techStackData, services, projectsData, profile, skills, certifications] =
+    await Promise.all([
+      readData("techStack.json"),
+      readData("services.json"),
+      readData("projects.json"),
+      readData("profile.json"),
+      readData("skills.json"),
+      readData("certifications.json"),
+    ]);
 
-const TechStackSection = dynamic(() => import("@/components/TechStackSection"), {
-  loading: () => (
-    <div className="section-padding">
-      <div className="h-72 rounded-3xl bg-light-100 dark:bg-dark-100 animate-pulse" />
-    </div>
-  ),
-});
-
-const AboutPreview = dynamic(() => import("@/components/AboutPreview"), {
-  loading: () => (
-    <div className="section-padding">
-      <div className="h-72 rounded-3xl bg-light-100 dark:bg-dark-100 animate-pulse" />
-    </div>
-  ),
-});
-
-const FeaturedProjects = dynamic(() => import("@/components/FeaturedProjects"), {
-  loading: () => (
-    <div className="section-padding">
-      <div className="h-72 rounded-3xl bg-light-100 dark:bg-dark-100 animate-pulse" />
-    </div>
-  ),
-});
-
-const ServicesSection = dynamic(() => import("@/components/ServicesSection"), {
-  loading: () => (
-    <div className="section-padding">
-      <div className="h-72 rounded-3xl bg-light-100 dark:bg-dark-100 animate-pulse" />
-    </div>
-  ),
-});
-
-export default function Home() {
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
-  }, []);
+  const counts = {
+    projects: Array.isArray(projectsData) ? projectsData.length : 0,
+    skills: Array.isArray(skills) ? skills.length : 0,
+    certifications: Array.isArray(certifications) ? certifications.length : 0,
+  };
 
   return (
-    <>
-      <HeroSection />
-      <TechStackSection />
-      <AboutPreview />
-      <FeaturedProjects />
-      <ServicesSection />
-    </>
+    <HomeClient
+      techStackData={techStackData}
+      services={services}
+      projectsData={projectsData}
+      counts={counts}
+      profile={profile}
+    />
   );
 }

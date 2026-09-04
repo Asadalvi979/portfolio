@@ -7,23 +7,12 @@ import gsap from "gsap";
 import { FiArrowRight, FiDownload, FiMail } from "react-icons/fi";
 import FloatingIcons from "./FloatingIcons";
 
-export default function HeroSection() {
+export default function HeroSection({ projectCount: initialCount = 0, profile: initialProfile }) {
   const headingRef = useRef(null);
   const subheadingRef = useRef(null);
   const ctaRef = useRef(null);
-  const [projectCount, setProjectCount] = useState(0);
-  const [profile, setProfile] = useState({ profileImage: "", cv: "", name: "Asadullah Sadiq" });
-
-  useEffect(() => {
-    fetch("/api/projects").then((r) => r.json()).then((p) => setProjectCount(p.length)).catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/profile")
-      .then((r) => r.json())
-      .then(setProfile)
-      .catch(() => {});
-  }, []);
+  const [projectCount, setProjectCount] = useState(initialCount);
+  const [profile, setProfile] = useState(initialProfile || { profileImage: "", cv: "", name: "Asadullah Sadiq" });
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

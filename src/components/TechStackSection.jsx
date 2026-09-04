@@ -1,9 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import AnimatedSection from "./AnimatedSection";
 import {
   SiHtml5,
@@ -53,14 +50,9 @@ const categoryColors = {
   tools: "from-gray-500/20 to-slate-500/20 border-gray-500/30",
 };
 
-export default function TechStackSection() {
-  const [techStackData, setTechStackData] = useState({});
-
-  useEffect(() => {
-    fetch("/api/techstack").then((r) => r.json()).then(setTechStackData);
-  }, []);
-
-  if (Object.keys(techStackData).length === 0) return null;
+export default function TechStackSection({ data }) {
+  const techStackData = data;
+  if (!techStackData || Object.keys(techStackData).length === 0) return null;
 
   return (
     <section className="section-padding bg-light-100/50 dark:bg-dark-50/50">

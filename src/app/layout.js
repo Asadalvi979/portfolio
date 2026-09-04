@@ -1,4 +1,5 @@
 import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import LayoutContent from "@/components/LayoutContent";
 
@@ -139,6 +140,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <LayoutContent>{children}</LayoutContent>
+        <Analytics />
       </body>
     </html>
   );

@@ -1,20 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiCode, FiLayout, FiServer, FiGlobe, FiCloud } from "react-icons/fi";
 import AnimatedSection from "./AnimatedSection";
 
 const iconMap = { code: FiCode, layout: FiLayout, server: FiServer, globe: FiGlobe, cloud: FiCloud };
 
-export default function ServicesSection() {
-  const [services, setServices] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/services").then((r) => r.json()).then(setServices);
-  }, []);
-
-  if (services.length === 0) return null;
+export default function ServicesSection({ data }) {
+  const services = data;
+  if (!services || services.length === 0) return null;
 
   return (
     <section className="section-padding">
