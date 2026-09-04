@@ -1,5 +1,5 @@
 import { Redis } from "@upstash/redis";
-import { readFile, stat } from "fs/promises";
+import { readFile, writeFile, stat } from "fs/promises";
 import { join } from "path";
 
 const DATA_DIR = join(process.cwd(), "src", "data");
@@ -7,8 +7,12 @@ const DATA_DIR = join(process.cwd(), "src", "data");
 const CACHE_TTL = 30_000;
 const cache = new Map();
 
+// Production (and preview) use Redis; local development falls back to the
+// JSON files in src/data so local edits can never touch production data.
+const isProd = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+
 const redis =
-  process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN
+  isProd && process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN
     ? new Redis({
         url: process.env.KV_REST_API_URL,
         token: process.env.KV_REST_API_TOKEN,
@@ -35,19 +39,7 @@ async function getFileMtime(filename) {
   }
 }
 
-export async function readData(filename) {
-  if (redis) {
-    const key = `data:${filename}`;
-    const cached = await redis.get(key);
-    if (cached !== null) return cached;
-
-    const localData = await getLocalData(filename);
-    if (localData && (Array.isArray(localData) ? localData.length > 0 : Object.keys(localData).length > 0)) {
-      await redis.set(key, localData);
-    }
-    return localData;
-  }
-
+async function getFromCache(filename) {
   const entry = cache.get(filename);
   const mtimeMs = await getFileMtime(filename);
 
@@ -64,14 +56,41 @@ export async function readData(filename) {
   return data;
 }
 
+async function setInCache(filename, data) {
+  const mtimeMs = await getFileMtime(filename);
+  cache.set(filename, { data, mtimeMs, ts: Date.now(), dirty: true });
+}
+
+export async function readData(filename) {
+  if (redis) {
+    const key = `data:${filename}`;
+    const cached = await redis.get(key);
+    if (cached !== null) return cached;
+
+    const localData = await getLocalData(filename);
+    if (localData && (Array.isArray(localData) ? localData.length > 0 : Object.keys(localData).length > 0)) {
+      await redis.set(key, localData);
+    }
+    return localData;
+  }
+
+  return getFromCache(filename);
+}
+
 export async function writeData(filename, data) {
   if (redis) {
     const key = `data:${filename}`;
     await redis.set(key, data);
+  } else {
+    // Local dev: persist to the JSON file so local edits survive restarts.
+    try {
+      await writeFile(join(DATA_DIR, filename), JSON.stringify(data, null, 2));
+      await setInCache(filename, data);
+    } catch (err) {
+      console.error(`writeData: failed to persist ${filename}:`, err.message);
+      return false;
+    }
   }
-
-  const mtimeMs = await getFileMtime(filename);
-  cache.set(filename, { data, mtimeMs, ts: Date.now(), dirty: true });
   return true;
 }
 

@@ -1,5 +1,14 @@
 [
-  { "id": "all", "label": "All Projects" },
-  { "id": "fullstack", "label": "Full Stack" },
-  { "id": "mini-projects", "label": "Mini Projects" }
+  {
+    "id": "all",
+    "label": "All Projects"
+  },
+  {
+    "id": "fullstack",
+    "label": "Full Stack"
+  },
+  {
+    "id": "mini-projects",
+    "label": "Mini Projects"
+  }
 ]
