@@ -19,10 +19,11 @@ export default function AboutPreview({ counts }) {
               </h2>
               <div className="mt-6 space-y-4">
                 <p className="text-light-400 dark:text-muted text-lg leading-relaxed">
-                  Asadullah is a Software Engineering student at Riphah International
-                  University with a strong passion for full-stack development and problem
-                  solving. He focuses on building practical digital solutions and
-                  continuously improving his technical skills through real-world projects.
+                  Asadullah is a Full Stack Developer based in Sahiwal, Pakistan, and a
+                  Software Engineering student at Riphah International University with a
+                  strong passion for full-stack development and problem solving. He
+                  focuses on building practical digital solutions and continuously
+                  improving his technical skills through real-world projects.
                 </p>
                 <p className="text-light-400 dark:text-muted text-lg leading-relaxed">
                   With a keen eye for clean code and modern design, Asadullah strives to

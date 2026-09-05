@@ -65,7 +65,7 @@ const SVG_BASE = (title, subtitle, footer, label) => {
   const siteSvg = SVG_BASE(
     "Asadullah Sadiq",
     "Software Engineer & Full Stack Developer",
-    "asadullahsadiq.me",
+    "📍 Sahiwal, Pakistan  ·  asadullahsadiq.me",
     ""
   );
   await fs.writeFile("public/og-image.png", await sharp(Buffer.from(siteSvg)).png().toBuffer());

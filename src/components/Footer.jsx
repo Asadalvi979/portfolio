@@ -49,8 +49,8 @@ export default function Footer() {
               AS
             </Link>
             <p className="mt-4 text-light-400 dark:text-muted text-sm leading-relaxed max-w-xs">
-              Software Engineer & Full Stack Developer building meaningful digital
-              experiences through code & innovation.
+              Software Engineer & Full Stack Developer in Sahiwal, Pakistan —
+              building meaningful digital experiences through code & innovation.
             </p>
           </div>
 

@@ -81,6 +81,9 @@ export default function HeroSection({ projectCount: initialCount = 0, profile: i
                 <br />
                 <span className="text-gradient">Full Stack Developer</span>
               </p>
+              <p className="text-lg md:text-xl font-medium text-light-400 dark:text-muted mt-4">
+                📍 Based in <span className="text-text-dark dark:text-text font-semibold">Sahiwal, Pakistan</span> — building for clients everywhere
+              </p>
             </div>
 
             <p

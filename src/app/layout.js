@@ -25,19 +25,23 @@ const SITE_URL = "https://www.asadullahsadiq.me";
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Asadullah Sadiq | Software Engineer & Full Stack Developer",
+    default: "Asadullah Sadiq | Full Stack Developer in Sahiwal, Pakistan",
     template: "%s | Asadullah Sadiq",
   },
   description:
-    "Building Meaningful Digital Experiences Through Code & Innovation. Personal portfolio of Asadullah Sadiq, a Software Engineer and Full Stack Developer.",
+    "Asadullah Sadiq — Full Stack Developer in Sahiwal, Pakistan, building scalable web applications with React, Next.js, Django, and PHP. Available for freelance projects and full-time opportunities.",
   keywords: [
     "Asadullah Sadiq",
+    "Full Stack Developer in Sahiwal",
+    "Web Developer in Sahiwal",
+    "Web Developer in Pakistan",
+    "Sahiwal",
     "Software Engineer",
     "Full Stack Developer",
     "Web Developer",
-    "React",
-    "Next.js",
-    "Django",
+    "Freelance Web Developer",
+    "React Developer",
+    "Django Developer",
     "Portfolio",
   ],
   authors: [{ name: "Asadullah Sadiq", url: SITE_URL }],
@@ -47,9 +51,9 @@ export const metadata = {
   },
   manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "Asadullah Sadiq | Software Engineer & Full Stack Developer",
+    title: "Asadullah Sadiq | Full Stack Developer in Sahiwal, Pakistan",
     description:
-      "Building Meaningful Digital Experiences Through Code & Innovation.",
+      "Building meaningful digital experiences through code & innovation. Full Stack Developer in Sahiwal, Pakistan.",
     type: "website",
     locale: "en_US",
     url: SITE_URL,
@@ -59,15 +63,15 @@ export const metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Asadullah Sadiq — Software Engineer & Full Stack Developer",
+        alt: "Asadullah Sadiq — Full Stack Developer in Sahiwal, Pakistan",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Asadullah Sadiq | Software Engineer & Full Stack Developer",
+    title: "Asadullah Sadiq | Full Stack Developer in Sahiwal, Pakistan",
     description:
-      "Building Meaningful Digital Experiences Through Code & Innovation.",
+      "Building meaningful digital experiences through code & innovation.",
     creator: "@AsadullahSadiq_",
     images: ["/og-image.png"],
   },
@@ -89,21 +93,36 @@ const personSchema = {
   name: "Asadullah Sadiq",
   url: SITE_URL,
   email: "mailto:asadullahsadiqalvi@gmail.com",
-  jobTitle: "Software Engineer & Full Stack Developer",
+  jobTitle: "Full Stack Developer",
   description:
-    "Full Stack Developer building scalable web applications with React, Next.js, Django, and PHP.",
+    "Asadullah Sadiq is a Full Stack Developer in Sahiwal, Pakistan, building scalable web applications with React, Next.js, Django, and PHP.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Sahiwal",
     addressRegion: "Punjab",
     addressCountry: "PK",
   },
+  homeLocation: {
+    "@type": "Place",
+    name: "Sahiwal, Pakistan",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Sahiwal",
+      addressRegion: "Punjab",
+      addressCountry: "PK",
+    },
+  },
+  areaServed: [
+    { "@type": "City", name: "Sahiwal" },
+    { "@type": "Country", name: "Pakistan" },
+  ],
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Riphah International University",
   },
   knowsAbout: [
     "Full Stack Development",
+    "Web Development",
     "React",
     "Next.js",
     "Django",
