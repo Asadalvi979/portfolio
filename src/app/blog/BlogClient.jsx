@@ -50,7 +50,7 @@ export default function BlogClient({ posts }) {
               </div>
             </AnimatedSection>
           ) : (
-            <div className="max-w-3xl mx-auto space-y-6">
+            <div className="max-w-3xl xl:max-w-4xl 2xl:max-w-6xl mx-auto space-y-6">
               {posts.map((post, i) => (
                 <AnimatedSection key={post.slug} delay={Math.min(i, 4) * 0.1}>
                   <motion.div

@@ -58,7 +58,7 @@ export default function HeroSection({ projectCount: initialCount = 0, profile: i
       <div className="absolute inset-0 bg-glow" />
       <FloatingIcons />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center pt-20">
           <div>
             <motion.div

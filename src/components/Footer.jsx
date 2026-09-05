@@ -42,7 +42,7 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-light-200 dark:border-dark-200/50 bg-light-100 dark:bg-dark-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           <div>
             <Link href="/" className="text-2xl font-bold font-heading text-gradient">

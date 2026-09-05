@@ -98,7 +98,7 @@ export default function AboutClient({ skillData, educationData, projectCount, ce
               Skills & <span className="text-gradient">Expertise</span>
             </h2>
           </AnimatedSection>
-          <div className="max-w-2xl mx-auto space-y-6">
+          <div className="max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto space-y-6">
             {skillData.map((skill, i) => (
               <div key={skill.name} className="skill-item">
                 <SkillBar name={skill.name} level={skill.level} delay={i * 0.1} />
@@ -116,7 +116,7 @@ export default function AboutClient({ skillData, educationData, projectCount, ce
               Education & <span className="text-gradient">Journey</span>
             </h2>
           </AnimatedSection>
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-xl xl:max-w-2xl 2xl:max-w-3xl mx-auto">
             <Timeline items={educationData} />
           </div>
         </div>

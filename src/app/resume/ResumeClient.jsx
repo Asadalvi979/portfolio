@@ -52,7 +52,7 @@ export default function ResumeClient({ skillData, educationData, experienceData,
             </div>
           </AnimatedSection>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl xl:max-w-4xl 2xl:max-w-6xl mx-auto">
             {/* Education */}
             <ResumeSection icon={FiBook} title="Education" delay={0.1}>
               {educationData.map((item, i) => (

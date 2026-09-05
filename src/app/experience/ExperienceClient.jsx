@@ -21,7 +21,7 @@ export default function ExperienceClient({ experienceData, educationData }) {
             </div>
           </AnimatedSection>
 
-          <div className="max-w-3xl mx-auto space-y-12">
+          <div className="max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto space-y-12">
             {/* Work Experience */}
             <AnimatedSection>
               <div className="flex items-center gap-3 mb-8">
