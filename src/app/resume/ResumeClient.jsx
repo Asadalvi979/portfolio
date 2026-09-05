@@ -35,7 +35,7 @@ export default function ResumeClient({ skillData, educationData, experienceData,
               {cv ? (
                 <a
                   href={cv}
-                  download={cv.startsWith("data:") ? "Asadullah-CV.pdf" : undefined}
+                  download={cv.startsWith("http") ? undefined : "Asadullah-CV.pdf"}
                   target={cv.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-xl text-sm font-medium hover:bg-accent-dark transition-colors"

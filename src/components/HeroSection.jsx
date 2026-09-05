@@ -118,7 +118,7 @@ export default function HeroSection({ projectCount: initialCount = 0, profile: i
                 {profile.cv ? (
                   <a
                     href={profile.cv}
-                    download={profile.cv.startsWith("data:") ? "Asadullah-CV.pdf" : undefined}
+                    download={profile.cv.startsWith("http") ? undefined : "Asadullah-CV.pdf"}
                     target={profile.cv.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
                     className="group inline-flex items-center gap-2 px-6 py-3.5 border border-light-300 dark:border-dark-300/50 text-text-dark dark:text-text rounded-xl font-semibold text-sm hover:bg-light-200 dark:hover:bg-dark-200 transition-all duration-300 hover:-translate-y-0.5"

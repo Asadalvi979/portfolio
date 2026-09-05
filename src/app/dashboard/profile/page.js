@@ -19,6 +19,7 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const imageInputRef = useRef(null);
   const cvInputRef = useRef(null);
 
@@ -52,6 +53,17 @@ export default function ProfilePage() {
       alert("Please select a PDF file.");
       return;
     }
+    // Inline uploads travel as base64 inside the profile JSON, which platform
+    // request-size limits reject. Keep them small; big PDFs belong in /public/cv/.
+    if (file.size > 700_000) {
+      alert(
+        "PDF is too large for inline upload (~" +
+        Math.round(file.size / 1024) + " KB). " +
+        "Host it in /public/cv/ and paste its URL in the CV URL field instead."
+      );
+      e.target.value = "";
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => setProfile((p) => ({ ...p, cv: reader.result }));
     reader.readAsDataURL(file);
@@ -60,14 +72,22 @@ export default function ProfilePage() {
   async function handleSubmit(e) {
     e.preventDefault();
     setSaving(true);
-    await fetch("/api/profile", {
+    saveError("");
+    const res = await fetch("/api/profile", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(profile),
     });
+    if (!res.ok) {
+      setSaveError(
+        "Save failed — the payload is likely too large (e.g. a big CV PDF). " +
+        "Host the file in /public/cv/ and paste its URL instead."
+      );
+    } else {
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2500);
+    }
     setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
   }
 
   function clearImage() {
@@ -102,6 +122,7 @@ export default function ProfilePage() {
         </div>
         <div className="flex items-center gap-3">
           {saved && <span className="text-green-400 text-sm font-medium">Saved successfully</span>}
+          {saveError && <span className="text-red-400 text-sm font-medium text-right max-w-md">{saveError}</span>}
           <button
             onClick={handleSubmit}
             disabled={saving}
